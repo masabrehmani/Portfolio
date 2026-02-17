@@ -160,8 +160,6 @@
         }
         
         /* Profile Picture */
-
-
 .profile-pic {
     width: 200px;
     height: 200px;
@@ -396,6 +394,7 @@
             100% { transform: rotateX(360deg) rotateY(360deg); }
         }
         
+        
         /* Programming Languages Section */
         .languages-grid {
             display: grid;
@@ -436,14 +435,50 @@
             color: #ccc;
         }
         
-        /* Education Section */
-        .education-timeline {
+        /*EDUCATION LIST */
+        .education-plain {
+            max-width: 800px;
+            margin: 0 auto;
+            background: var(--card-bg);
+            padding: 40px;
+            border-radius: 10px;
+            border: 1px solid rgba(0, 255, 0, 0.2);
+        }
+        .edu-row {
+            display: flex;
+            flex-wrap: wrap;
+            padding: 15px 0;
+            border-bottom: 1px solid rgba(0, 255, 0, 0.1);
+        }
+        .edu-row:last-child {
+            border-bottom: none;
+        }
+        .edu-year {
+            width: 140px;
+            font-weight: 700;
+            color: var(--neon-green);
+            font-family: 'Orbitron', sans-serif;
+        }
+        .edu-desc {
+            flex: 1;
+            color: #fff;
+        }
+        .edu-desc strong {
+            color: var(--neon-blue);
+        }
+        .edu-desc small {
+            color: #aaa;
+            display: block;
+            margin-top: 4px;
+        }
+        
+        /* --- TIMELINE (exactly preserved for certs & experience) --- */
+        .timeline {
             position: relative;
             max-width: 800px;
             margin: 0 auto;
         }
-        
-        .education-timeline::before {
+        .timeline::before {
             content: '';
             position: absolute;
             left: 50%;
@@ -453,8 +488,7 @@
             background: var(--neon-green);
             box-shadow: 0 0 10px var(--neon-green);
         }
-        
-        .education-item {
+        .timeline-item {
             background: var(--card-bg);
             padding: 30px;
             border-radius: 10px;
@@ -463,18 +497,15 @@
             position: relative;
             width: calc(50% - 40px);
         }
-        
-        .education-item:nth-child(odd) {
+        .timeline-item:nth-child(odd) {
             margin-left: 0;
             margin-right: auto;
         }
-        
-        .education-item:nth-child(even) {
+        .timeline-item:nth-child(even) {
             margin-left: auto;
             margin-right: 0;
         }
-        
-        .education-item::before {
+        .timeline-item::before {
             content: '';
             position: absolute;
             top: 30px;
@@ -484,39 +515,33 @@
             border-radius: 50%;
             box-shadow: 0 0 10px var(--neon-green);
         }
-        
-        .education-item:nth-child(odd)::before {
+        .timeline-item:nth-child(odd)::before {
             right: -50px;
         }
-        
-        .education-item:nth-child(even)::before {
+        .timeline-item:nth-child(even)::before {
             left: -50px;
         }
-        
-        .education-year {
+        .timeline-year {
             color: var(--neon-green);
             font-weight: bold;
             margin-bottom: 10px;
             font-family: 'Orbitron', sans-serif;
         }
-        
-        .education-degree {
+        .timeline-title {
             font-size: 1.3rem;
             margin-bottom: 10px;
             color: #fff;
         }
-        
-        .education-institution {
+        .timeline-sub {
             color: #ccc;
             margin-bottom: 10px;
         }
-        
-        .education-details {
+        .timeline-desc {
             color: #ccc;
             font-size: 0.95rem;
         }
         
-        /* Skills Section */
+        /* Skills, projects, contact styles unchanged */
         .skills-grid {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
@@ -757,25 +782,16 @@
                 flex-direction: column;
             }
             
-            .profile-container {
-                flex-direction: column;
-                text-align: center;
-            }
-            
-            .profile-info h2 {
-                text-align: center;
-            }
-            
-            .education-timeline::before {
+            .timeline::before {
                 left: 20px;
             }
             
-            .education-item {
+            .timeline-item {
                 width: calc(100% - 60px);
                 margin-left: 60px !important;
             }
             
-            .education-item::before {
+            .timeline-item::before {
                 left: -40px !important;
             }
             
@@ -795,6 +811,8 @@
                 <div class="nav-links">
                     <a href="#about">About</a>
                     <a href="#education">Education</a>
+                    <a href="#experience">Experience</a>
+                    <a href="#certifications">Certifications</a>
                     <a href="#languages">Languages</a>
                     <a href="#skills">Skills</a>
                     <a href="#projects">Projects</a>
@@ -808,13 +826,12 @@
     <section class="hero">
         <div class="container">
             <div class="hero-content">
-                <h1>Entry-Level Cybersecurity <span>Professional</span></h1>
-                <p>Protecting digital assets through advanced security solutions, threat analysis, and proactive defense strategies.</p>
+                <h1>Entry-Level Cybersecurity <span>Practitionar</span></h1>
+                <p>Protecting digital assets through advanced security solutions, threat analysis, and defense strategies.</p>
                 <a href="#contact" class="btn">Get In Touch</a>
             </div>
         </div>
         
-        <!-- 3D Animation Container -->
         <div id="animation-container">
             <div class="floating-shapes">
                 <div class="shape"></div>
@@ -826,107 +843,142 @@
     </section>
 
     <!-- About Section -->
-<!-- About Section -->
-<section id="about">
-    <div class="container">
-        <h2>About Me</h2>
-        <div class="profile-container">
-            <div class="profile-pic">
-                <img src="profile.png" alt="Muhammad Masab">
+    <section id="about">
+        <div class="container">
+            <h2>About Me</h2>
+            <div class="profile-container">
+                <div class="profile-pic">
+                    <img src="profile.png" alt="Masab Rehmani">
+                </div>
+                <div class="profile-info">
+                    <h2>Muhammad Masab</h2>
+                    <div class="profile-title">Junior Penetration Tester & Cybersecurity Enthusiast</div>
+                    <p>I am a dedicated junior penetration tester with one year of specialized training in Advanced Cyber Security. Passionate about cybersecurity, I am constantly expanding my knowledge and skills in this dynamic field.</p>
+                    
+                    <div class="profile-badges">
+                        <div class="profile-badge">🔒 DACS Certified</div>
+                        <div class="profile-badge">🌐 Cisco Certified</div>
+                        <div class="profile-badge">🛡️ Endpoint Security</div>
+                    </div>
+                </div>
             </div>
-            <div class="profile-info">
-                <h2>Muhammad Masab</h2>
-                <div class="profile-title">Junior Penetration Tester & Cybersecurity Enthusiast</div>
-                <p>I am a dedicated junior penetration tester with one year of specialized training in Advanced Cyber Security. Passionate about cybersecurity, I am constantly expanding my knowledge and skills in this dynamic field.</p>
-                
-                <div class="profile-badges">
-                    <div class="profile-badge">🔒 DACS Certified</div>
-                    <div class="profile-badge">🌐 Cisco Certified</div>
-                    <div class="profile-badge">🛡️ Endpoint Security</div>
+            <div class="about-content">
+                <div class="about-text">
+                    <p>I stay current with industry developments by actively participating in Capture The Flag competitions and following the latest cybersecurity trends and technologies. I hold different CISCO and DACS Certifications</p>
+                    <p>With a strong aptitude for learning new tools and technologies, I am actively seeking internship opportunities to apply my skills and contribute to real-world cybersecurity challenges.</p>
+                </div>
+                <div class="about-visual">
+                    <div class="rotating-cube">
+                        <div class="cube-face">SECURE</div>
+                        <div class="cube-face">PROTECT</div>
+                        <div class="cube-face">DEFEND</div>
+                        <div class="cube-face">ANALYZE</div>
+                        <div class="cube-face">MONITOR</div>
+                        <div class="cube-face">RESPOND</div>
+                    </div>
                 </div>
             </div>
         </div>
-        <div class="about-content">
-            <div class="about-text">
-                <p>I stay current with industry developments by actively participating in Capture The Flag competitions and following the latest cybersecurity trends and technologies. I hold different CISCO and DACS Certifications</p>
-                <p>With a strong aptitude for learning new tools and technologies, I am actively seeking internship opportunities to apply my skills and contribute to real-world cybersecurity challenges.</p>
-            </div>
-            <div class="about-visual">
-                <div class="rotating-cube">
-                    <div class="cube-face">SECURE</div>
-                    <div class="cube-face">PROTECT</div>
-                    <div class="cube-face">DEFEND</div>
-                    <div class="cube-face">ANALYZE</div>
-                    <div class="cube-face">MONITOR</div>
-                    <div class="cube-face">RESPOND</div>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
+    </section>
 
-    <!-- Education Section -->
+    <!-- ===== PLAIN EDUCATION SECTION ===== -->
     <section id="education">
         <div class="container">
+            <h2>Education</h2>
+            <div class="education-plain">
+                <div class="edu-row">
+                    <div class="edu-year">2025 – Current</div>
+                    <div class="edu-desc">
+                        <strong>Bachelor of Science in Computer Science</strong> – Virtual University of Pakistan<br>
+                        <small>CGPA: Awaiting Result </small>
+                    </div>
+                </div>
+                <div class="edu-row">
+                    <div class="edu-year">2022 – 2024</div>
+                    <div class="edu-desc">
+                        <strong>Intermediate and Secondary Education (I.CS)</strong> – Punjab Group of Colleges, Khanewal<br>
+                        <small>Grade: A (72%)</small>
+                    </div>
+                </div>
+                <div class="edu-row">
+                    <div class="edu-year">2020 – 2022</div>
+                    <div class="edu-desc">
+                        <strong>Matriculation</strong> – Govt Model Higher Secondary School, Khanewal<br>
+                        <small>Grade: A+ (91%)</small>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
 
-            <h2>Education & Certifications</h2>
-            <div class="education-timeline">
-                <div class="education-item">
-                    <div class="education-year">July 2025 - Current</div>
-                    <div class="education-degree">Ethical Hacker</div>
-                    <div class="education-institution">CISCO Networking Academy</div>
-                    <div class="education-details">Focusing on advanced penetration testing techniques, exploit development, identifying website and application vulnerabilities and real-world ethical hacking practices. Expected completion: December 2025.</div>
+    <!-- ===== WORK EXPERIENCE SECTION ===== -->
+    <section id="experience">
+        <div class="container">
+            <h2>Work Experience</h2>
+            <div class="timeline">
+                <div class="timeline-item">
+                    <div class="timeline-year">January 2025 – Present</div>
+                    <div class="timeline-title">Red Team Practitionar (Intern)</div>
+                    <div class="timeline-sub">ITSOLERA Pvt Ltd · Islamabad (Remote)</div>
+                    <div class="timeline-desc">Conducting vulnerability assessments on web applications, writing detailed reports, and assisting in red-team simulations. </div>
                 </div>
+            </div>
+        </div>
+    </section>
 
-                <div class="education-item">
-                    <div class="education-year">June 2025 - September 2025</div>
-                    <div class="education-degree">Network Defense</div>
-                    <div class="education-institution">CISCO Networking Academy</div>
-                    <div class="education-details">Focused on advanced cybersecurity strategies, intrusion detection, and network protection protocols.</div>
+    <!-- ===== CERTIFICATIONS SECTION ===== -->
+    <section id="certifications">
+        <div class="container">
+            <h2>Certifications</h2>
+            <div class="timeline">
+                <div class="timeline-item">
+                    <div class="timeline-year">July 2025 - Current</div>
+                    <div class="timeline-title">Ethical Hacker</div>
+                    <div class="timeline-sub">CISCO Networking Academy</div>
+                    <div class="timeline-desc">Focusing on advanced penetration testing techniques, exploit development, identifying website and application vulnerabilities and real-world ethical hacking practices. Expected completion: December 2025.</div>
                 </div>
-
-                <div class="education-item">
-                    <div class="education-year">Marach 2025 - September 2025</div>
-                    <div class="education-degree">Penetration Testing Web Hacking</div>
-                    <div class="education-institution">EHunar</div>
-                    <div class="education-details">Gained practical experience in exploiting web vulnerabilities, secure coding, and advanced testing methodologies.</div>
+                <div class="timeline-item">
+                    <div class="timeline-year">June 2025 - September 2025</div>
+                    <div class="timeline-title">Network Defense</div>
+                    <div class="timeline-sub">CISCO Networking Academy</div>
+                    <div class="timeline-desc">Focused on advanced cybersecurity strategies, intrusion detection, and network protection protocols.</div>
                 </div>
-
-                <div class="education-item">
-                    <div class="education-year">June 2025 - September 2025</div>
-                    <div class="education-degree">Endpoint Security</div>
-                    <div class="education-institution">CISCO Networking Academy</div>
-                    <div class="education-details">Gained specialized training in endpoint protection, detection, and response strategies.</div>
+                <div class="timeline-item">
+                    <div class="timeline-year">March 2025 - September 2025</div>
+                    <div class="timeline-title">Penetration Testing Web Hacking</div>
+                    <div class="timeline-sub">EHunar</div>
+                    <div class="timeline-desc">Gained practical experience in exploiting web vulnerabilities, secure coding, and advanced testing methodologies.</div>
                 </div>
-
-                <div class="education-item">
-                    <div class="education-year">July 2025 - September 2025</div>
-                    <div class="education-degree">Network Devices and Basic Configuration</div>
-                    <div class="education-institution">CISCO Networking Academy</div>
-                    <div class="education-details">Comprehensive hands on learning on essential hardware setup and network configuration</div>
+                <div class="timeline-item">
+                    <div class="timeline-year">June 2025 - September 2025</div>
+                    <div class="timeline-title">Endpoint Security</div>
+                    <div class="timeline-sub">CISCO Networking Academy</div>
+                    <div class="timeline-desc">Gained specialized training in endpoint protection, detection, and response strategies.</div>
                 </div>
-                
-                <div class="education-item">
-                    <div class="education-year">July 2025 - August 2025</div>
-                    <div class="education-degree">Introduction to Cyber Security</div>
-                    <div class="education-institution">CISCO Networking Academy</div>
-                    <div class="education-details">Theoretical foundational cybersecurity concepts and network security principles.</div>
+                <div class="timeline-item">
+                    <div class="timeline-year">July 2025 - September 2025</div>
+                    <div class="timeline-title">Network Devices and Basic Configuration</div>
+                    <div class="timeline-sub">CISCO Networking Academy</div>
+                    <div class="timeline-desc">Comprehensive hands on learning on essential hardware setup and network configuration.</div>
                 </div>
-                
-                <div class="education-item">
-                    <div class="education-year">February 2025 - August 2025</div>
-                    <div class="education-degree">DACS Certification</div>
-                    <div class="education-institution">PNY Trainings, Lahore</div>
-                    <div class="education-details">Focused on practical CCNA, network security, Penetration Testing and Programming fundamentals.</div>
+                <div class="timeline-item">
+                    <div class="timeline-year">July 2025 - August 2025</div>
+                    <div class="timeline-title">Introduction to Cyber Security</div>
+                    <div class="timeline-sub">CISCO Networking Academy</div>
+                    <div class="timeline-desc">Theoretical foundational cybersecurity concepts and network security principles.</div>
                 </div>
-                      
-                <div class="education-item">
-                    <div class="education-year">May 2025 - August 2025</div>
-                    <div class="education-degree">Certified Ethical Hacking</div>
-                    <div class="education-institution">EHunar</div>
-                    <div class="education-details">Covered ethical hacking tools, vulnerability assessment, and security techniques.</div>
+                <div class="timeline-item">
+                    <div class="timeline-year">February 2025 - August 2025</div>
+                    <div class="timeline-title">DACS Certification</div>
+                    <div class="timeline-sub">PNY Trainings, Lahore</div>
+                    <div class="timeline-desc">Focused on practical CCNA, network security, Penetration Testing and Programming fundamentals.</div>
                 </div>
-
+                <div class="timeline-item">
+                    <div class="timeline-year">May 2025 - August 2025</div>
+                    <div class="timeline-title">Certified Ethical Hacking</div>
+                    <div class="timeline-sub">EHunar</div>
+                    <div class="timeline-desc">Covered ethical hacking tools, vulnerability assessment, and security techniques.</div>
+                </div>
             </div>
         </div>
     </section>
@@ -959,19 +1011,12 @@
                     <div class="language-name">SQL</div>
                     <div class="language-level">Intermediate</div>
                 </div>
-                
-                <div class="language-item">
-                    <div class="language-icon"><i class="fab fa-microsoft"></i></div>
-                    <div class="language-name">PowerShell</div>
-                    <div class="language-level">Intermediate</div>
-                </div>
-                
             </div>
         </div>
     </section>
 
     <!-- Skills Section -->
-    <section id="skills">
+<section id="skills">
         <div class="container">
             <h2>Skills & Expertise</h2>
             <div class="skills-grid">
@@ -986,6 +1031,11 @@
                     <p>Comprehensive scanning, penetration testing, and security auditing to identify and remediate weaknesses.</p>
                 </div>
                 <div class="skill-card">
+                    <div class="skill-icon">🔐</div>
+                    <h3>Cryptography</h3>
+                    <p>Encryption algorithms, PKI management, digital signatures, and secure communication protocols.</p>
+                </div>
+                <div class="skill-card">
                     <div class="skill-icon">🚨</div>
                     <h3>Incident Response</h3>
                     <p>Rapid detection, analysis, and containment of security breaches with detailed post-incident reporting.</p>
@@ -995,20 +1045,12 @@
                     <h3>Security Analytics</h3>
                     <p>SIEM implementation, log analysis, threat intelligence, and behavioral analytics for proactive defense.</p>
                 </div>
-                <div class="skill-card">
-                    <div class="skill-icon">🔐</div>
-                    <h3>Cryptography</h3>
-                    <p>Encryption algorithms, PKI management, digital signatures, and secure communication protocols.</p>
-                </div>
-                <div class="skill-card">
-                    <div class="skill-icon">📝</div>
-                    <h3>Security Policies</h3>
-                    <p>Developing comprehensive security frameworks, compliance standards, and employee training programs.</p>
-                </div>
+
             </div>
         </div>
     </section>
 
+    <!-- Projects Section  -->
     <!-- Projects Section -->
     <section id="projects">
         <div class="container">
@@ -1021,8 +1063,10 @@
                         </div>
                     </div>
                     <div class="project-content">
-                        <h3>TCP Port Scanner</h3>
-                        <p>A lightweight Python-based TCP port scanner capable of identifying open, closed, and filtered ports across a target host.</p>
+                        <h3>Reconnaissance Toolkit - Internship Project</h3>
+                        <p>A lightweight Python-based modular reconnaissance tool to automate initial information gathering
+                            during penetration testing engagements, familiarizing with offensive tooling techniques, 
+                            scripting, and modular architecture in real-world red team scenarios.</p>
                         <div class="project-tags">
                             <span class="project-tag">Reconnaissance</span>
                             <span class="project-tag">Scanning</span>
@@ -1120,85 +1164,37 @@
         </div>
     </section>
 
-<!-- Contact Section -->
-<section id="contact">
-    <div class="container">
-        <h2>Get In Touch</h2>
-        <div class="contact-content">
-            <div class="contact-info">
-                <div class="contact-item">
-                    <div class="contact-icon">📧</div>
-                    <div>
-                        <h3>Email</h3>
-                        <p>masabrehmani110@gmail.com</p>
-                    </div>
+    <!-- Contact Section  -->
+    <section id="contact">
+        <div class="container">
+            <h2>Get In Touch</h2>
+            <div class="contact-content">
+                <div class="contact-info">
+                    <div class="contact-item"><div class="contact-icon">📧</div><div><h3>Email</h3><p>masabrehmani110@gmail.com</p></div></div>
+                    <div class="contact-item"><div class="contact-icon">📱</div><div><h3>Phone</h3><p>+92 3412842576</p></div></div>
+                    <div class="contact-item"><div class="contact-icon">📍</div><div><h3>Location</h3><p>Khanewal, Pakistan</p></div></div>
                 </div>
-                <div class="contact-item">
-                    <div class="contact-icon">📱</div>
-                    <div>
-                        <h3>Phone</h3>
-                        <p>+92 3412842576</p>
-                    </div>
+                <div class="contact-form">
+                    <form id="contactForm" action="https://formspree.io/f/manaorwb" method="POST">
+                        <div class="form-group"><label for="name">Name</label><input type="text" id="name" name="name" required></div>
+                        <div class="form-group"><label for="email">Email</label><input type="email" id="email" name="email" required></div>
+                        <div class="form-group"><label for="subject">Subject</label><input type="text" id="subject" name="subject" required></div>
+                        <div class="form-group"><label for="message">Message</label><textarea id="message" name="message" rows="5" required></textarea></div>
+                        <button type="submit" class="btn">Send Message</button>
+                    </form>
                 </div>
-                <div class="contact-item">
-                    <div class="contact-icon">📍</div>
-                    <div>
-                        <h3>Location</h3>
-                        <p>Khanewal, Pakistan</p>
-                    </div>
-                </div>
-            </div>
-            <div class="contact-form">
-                <form id="contactForm" action="https://formspree.io/f/manaorwb" method="POST">
-                    <div class="form-group">
-                        <label for="name">Name</label>
-                        <input type="text" id="name" name="name" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="email">Email</label>
-                        <input type="email" id="email" name="email" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="subject">Subject</label>
-                        <input type="text" id="subject" name="subject" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="message">Message</label>
-                        <textarea id="message" name="message" rows="5" required></textarea>
-                    </div>
-                    <button type="submit" class="btn">Send Message</button>
-                </form>
             </div>
         </div>
-    </div>
-</section>
+    </section>
 
     <!-- Footer -->
     <footer>
         <div class="container">
             <div class="social-links">
-                <!-- LinkedIn -->
-                <a href="https://www.linkedin.com/in/masab110" target="_blank" class="social-link">
-                    <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
-                        <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
-                    </svg>
-                </a>
-                
-                <!-- GitHub -->
-                <a href="https://github.com/masabrehmani" target="_blank" class="social-link">
-                    <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
-                        <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
-                    </svg>
-                </a>
-                
-                <!-- Instagram -->
-                <a href="https://www.instagram.com/masab_rehmani_110" target="_blank" class="social-link">
-                    <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
-                        <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
-                    </svg>
-                </a>
+                <a href="https://www.linkedin.com/in/masab110" target="_blank" class="social-link"><svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg></a>
+                <a href="https://github.com/masabrehmani" target="_blank" class="social-link"><svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg></a>
             </div>
-            <p>&copy; 2023 Cyber Security Portfolio. All rights reserved.</p>
+            <p>&copy; 2025 Cyber Security Portfolio. All rights reserved.</p>
         </div>
     </footer>
 
@@ -1223,46 +1219,42 @@
             });
         });
 
-    // Form submission with Formspree
-    document.getElementById('contactForm').addEventListener('submit', function(e) {
-        e.preventDefault();
-        
-        const form = this;
-        const submitBtn = form.querySelector('button[type="submit"]');
-        const originalText = submitBtn.textContent;
-        
-        // Show loading state
-        submitBtn.textContent = 'Sending...';
-        submitBtn.disabled = true;
-        
-        // Create FormData object
-        const formData = new FormData(form);
-        
-        // Send to Formspree
-        fetch(form.action, {
-            method: 'POST',
-            body: formData,
-            headers: {
-                'Accept': 'application/json'
-            }
-        })
-        .then(response => {
-            if (response.ok) {
-                alert('Thank you for your message! I will get back to you soon.');
-                form.reset();
-            } else {
+        // Form submission with Formspree
+        document.getElementById('contactForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const form = this;
+            const submitBtn = form.querySelector('button[type="submit"]');
+            const originalText = submitBtn.textContent;
+            
+            submitBtn.textContent = 'Sending...';
+            submitBtn.disabled = true;
+            
+            const formData = new FormData(form);
+            
+            fetch(form.action, {
+                method: 'POST',
+                body: formData,
+                headers: {
+                    'Accept': 'application/json'
+                }
+            })
+            .then(response => {
+                if (response.ok) {
+                    alert('Thank you for your message! I will get back to you soon.');
+                    form.reset();
+                } else {
+                    alert('Oops! There was a problem sending your message. Please try again.');
+                }
+            })
+            .catch(error => {
                 alert('Oops! There was a problem sending your message. Please try again.');
-            }
-        })
-        .catch(error => {
-            alert('Oops! There was a problem sending your message. Please try again.');
-        })
-        .finally(() => {
-            // Reset button state
-            submitBtn.textContent = originalText;
-            submitBtn.disabled = false;
+            })
+            .finally(() => {
+                submitBtn.textContent = originalText;
+                submitBtn.disabled = false;
+            });
         });
-    });
 
         // Add floating particles
         function createParticles() {
@@ -1286,7 +1278,6 @@
             return colors[Math.floor(Math.random() * colors.length)];
         }
 
-        // Initialize particles
         createParticles();
     </script>
 </body>
