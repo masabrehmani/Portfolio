@@ -1,0 +1,358 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Write-ups & Detection Reports</title>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Exo+2:wght@300;400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        :root {
+            --neon-green: #0f0;
+            --neon-blue: #0af;
+            --dark-bg: #0a0a0a;
+            --card-bg: rgba(15, 15, 30, 0.7);
+        }
+        
+        body {
+            background-color: var(--dark-bg);
+            color: #fff;
+            font-family: 'Exo 2', sans-serif;
+            overflow-x: hidden;
+            line-height: 1.6;
+            padding-top: 80px;
+        }
+        
+        h1, h2, h3, h4 {
+            font-family: 'Orbitron', sans-serif;
+            font-weight: 700;
+        }
+        
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 1000;
+            padding: 20px 0;
+            transition: all 0.3s ease;
+            background: rgba(10, 10, 20, 0.95);
+            backdrop-filter: blur(10px);
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.3);
+        }
+        
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 1.8rem;
+            font-weight: 900;
+            color: var(--neon-green);
+            text-shadow: 0 0 10px var(--neon-green);
+            text-decoration: none;
+        }
+        
+        .nav-links {
+            display: flex;
+            gap: 30px;
+        }
+        
+        .nav-links a {
+            color: #fff;
+            text-decoration: none;
+            font-weight: 600;
+            position: relative;
+            padding: 5px 0;
+            transition: color 0.3s;
+        }
+        
+        .nav-links a:hover {
+            color: var(--neon-green);
+        }
+        
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--neon-green);
+            transition: width 0.3s;
+        }
+        
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+        
+        .page-title {
+            text-align: center;
+            padding: 40px 0 20px;
+        }
+        
+        .page-title h1 {
+            font-size: 2.8rem;
+            color: var(--neon-green);
+            text-shadow: 0 0 20px rgba(0, 255, 0, 0.3);
+        }
+        
+        .page-title h1::after {
+            content: '';
+            display: block;
+            width: 100px;
+            height: 3px;
+            background: var(--neon-green);
+            margin: 15px auto;
+            box-shadow: 0 0 10px var(--neon-green);
+        }
+        
+        .page-title p {
+            color: #ccc;
+            font-size: 1.1rem;
+        }
+        
+        .reports-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 30px;
+            padding: 40px 0;
+        }
+        
+        .report-card {
+            background: var(--card-bg);
+            border-radius: 12px;
+            padding: 25px;
+            border: 1px solid rgba(0, 255, 0, 0.2);
+            transition: all 0.3s;
+        }
+        
+        .report-card:hover {
+            transform: translateY(-8px);
+            border-color: var(--neon-green);
+            box-shadow: 0 10px 30px rgba(0, 255, 0, 0.15);
+        }
+        
+        .report-card .report-badge {
+            display: inline-block;
+            background: rgba(0, 255, 0, 0.15);
+            color: var(--neon-green);
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 0.7rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 12px;
+            border: 1px solid rgba(0, 255, 0, 0.2);
+        }
+        
+        .report-card h3 {
+            color: #fff;
+            font-size: 1.3rem;
+            margin-bottom: 10px;
+        }
+        
+        .report-card .report-meta {
+            color: var(--neon-blue);
+            font-size: 0.85rem;
+            margin-bottom: 12px;
+        }
+        
+        .report-card p {
+            color: #ccc;
+            font-size: 0.95rem;
+            margin-bottom: 15px;
+        }
+        
+        .report-card .report-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+        
+        .report-card .report-tag {
+            background: rgba(0, 170, 255, 0.1);
+            color: var(--neon-blue);
+            padding: 3px 10px;
+            border-radius: 15px;
+            font-size: 0.75rem;
+            border: 1px solid rgba(0, 170, 255, 0.2);
+        }
+        
+        .report-card .btn-report {
+            display: inline-block;
+            margin-top: 15px;
+            padding: 8px 20px;
+            background: transparent;
+            color: var(--neon-green);
+            border: 1px solid var(--neon-green);
+            text-decoration: none;
+            border-radius: 4px;
+            transition: all 0.3s;
+            font-size: 0.85rem;
+            font-weight: 600;
+        }
+        
+        .report-card .btn-report:hover {
+            background: var(--neon-green);
+            color: #000;
+            box-shadow: 0 0 20px rgba(0, 255, 0, 0.3);
+        }
+        
+        .back-btn {
+            text-align: center;
+            padding: 30px 0 60px;
+        }
+        
+        .back-btn a {
+            display: inline-block;
+            padding: 12px 30px;
+            background: transparent;
+            color: var(--neon-blue);
+            border: 2px solid var(--neon-blue);
+            text-decoration: none;
+            font-weight: bold;
+            border-radius: 4px;
+            transition: all 0.3s;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            box-shadow: 0 0 10px rgba(0, 170, 255, 0.3);
+        }
+        
+        .back-btn a:hover {
+            background: var(--neon-blue);
+            color: #000;
+            box-shadow: 0 0 20px rgba(0, 170, 255, 0.7);
+        }
+        
+        .file-types {
+            display: flex;
+            gap: 8px;
+            margin-top: 8px;
+        }
+        
+        .file-type {
+            font-size: 0.65rem;
+            background: rgba(255, 255, 255, 0.05);
+            padding: 2px 8px;
+            border-radius: 4px;
+            color: #888;
+        }
+        
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+            .reports-grid {
+                grid-template-columns: 1fr;
+            }
+            .page-title h1 {
+                font-size: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <nav>
+                <a href="index.html" class="logo">CYBER_SEC</a>
+                <div class="nav-links">
+                    <a href="index.html">Home</a>
+                    <a href="index.html#about">About</a>
+                    <a href="index.html#experience">Experience</a>
+                    <a href="index.html#skills">Skills</a>
+                    <a href="index.html#education">Education</a>
+                    <a href="index.html#projects">Projects</a>
+                    <a href="index.html#resume">Resume</a>
+                    <a href="reports.html">Write-ups</a>
+                    <a href="index.html#contact">Contact</a>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <div class="container">
+        <div class="page-title">
+            <h1>Write-ups & Detection Reports</h1>
+            <p>Detailed analysis of security events, detection engineering, and incident investigations</p>
+        </div>
+        
+        <div class="reports-grid">
+            <!-- Report 1 - SSH Brute Force -->
+            <div class="report-card">
+                <span class="report-badge">Incident Report</span>
+                <h3>SSH Brute Force Attack Analysis</h3>
+                <div class="report-meta">July 2025 · 5 min read</div>
+                <p>Analysis of SSH brute-force attack patterns, detection rules, and mitigation strategies using Wazuh SIEM.</p>
+                <div class="report-tags">
+                    <span class="report-tag">SSH</span>
+                    <span class="report-tag">Brute Force</span>
+                    <span class="report-tag">Wazuh Rules</span>
+                </div>
+                <div class="file-types">
+                    <span class="file-type">PDF</span>
+                </div>
+                <a href="reports/Brute_Force_IR_Report.pdf" target="_blank" class="btn-report">Read Report →</a>
+            </div>
+            
+            <!-- Report 2 - File Integrity Monitoring -->
+            <div class="report-card">
+                <span class="report-badge">Incident Report</span>
+                <h3>Host Based Anamoly Detection</h3>
+                <div class="report-meta">July 2025 · 5 min read</div>
+                <p>Implementation of File Integrity Monitoring on Linux endpoint using Wazuh FIM module.</p>
+                <div class="report-tags">
+                    <span class="report-tag">Log Monitoring</span>
+                    <span class="report-tag">Linux Security</span>
+                    <span class="report-tag">Windows Security</span>
+                </div>
+                <div class="file-types">
+                    <span class="file-type">PDF</span>
+                    
+                </div>
+                <a href="reports/Host_Based_Anamoly_Detection_IR.pdf" target="_blank" class="btn-report">Read Report →</a>
+            </div>
+            
+            <!-- Report 3 - Privilege Escalation -->
+            <div class="report-card">
+                <span class="report-badge">Incident Report</span>
+                <h3>Windows Privilege Escalation Detection</h3>
+                <div class="report-meta">June 2025 · 5 min read</div>
+                <p>Detection of privilege escalation attempts on Windows endpoints using Sysmon and Wazuh correlation rules.</p>
+                <div class="report-tags">
+                    <span class="report-tag">Privilege Escalation</span>
+                    <span class="report-tag">Sysmon</span>
+                    <span class="report-tag">MITRE ATT&CK</span>
+                </div>
+                <div class="file-types">
+                    <span class="file-type">PDF</span>
+                    
+                </div>
+                <a href="reports/Windows_Service_Installation_IR_Report.pdf" target="_blank" class="btn-report">Read Report →</a>
+            </div>
+            
+        </div>
+        
+        <div class="back-btn">
+            <a href="index.html">← Back to Portfolio</a>
+        </div>
+    </div>
+</body>
+</html>
